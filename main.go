@@ -24,7 +24,7 @@ func main() {
 	userInput.Name = "tes simpan"
 	userInput.Email = "Contoh@gmail.com"
 	userInput.Occupation = "anak banf"
-	userInput.Password = "password"
+	userInput.Password = "nahoj"
 
 	userService.RegisterUser(userInput)
 }
