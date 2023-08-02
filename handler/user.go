@@ -22,7 +22,11 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, nil)
+		errors := helper.FormatVallidationError(err)
+		errorMessage := gin.H{"errors": errors}
+
+		response := helper.APIResponse("Register Failed", http.StatusUnprocessableEntity, "error", errorMessage)
+		c.JSON(http.StatusUnprocessableEntity, response)
 	}
 
 	newUser, err := h.userService.RegisterUser(input)
