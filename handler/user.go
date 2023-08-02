@@ -25,12 +25,14 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, nil)
 	}
 
-	user, err := h.userService.RegisterUser(input)
+	newUser, err := h.userService.RegisterUser(input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, nil)
 	}
 
-	response := helper.APIResponse("accunt has been crated ", http.StatusOK, "status", user)
+	formatter := user.FormatterUser(newUser, "toktenekekekenjqeqnqe")
+
+	response := helper.APIResponse("account has been crated ", http.StatusOK, "status", formatter)
 
 	c.JSON(http.StatusOK, response)
 
